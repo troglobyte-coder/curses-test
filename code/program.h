@@ -12,4 +12,7 @@
 //
 const char * greet(void);
 
+//
+// should remove the header in a future rebuild
+
 #endif // end of PROGRAM_H
