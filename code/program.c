@@ -5,7 +5,7 @@
 //
 #include "program.h"
 #include <stdio.h>
-#include <SDL.h>
+#include <ncurses>
 
 //
 // Should greet the user into the program
@@ -32,38 +32,11 @@ const char *greet(void)
 //
 int foundation(int argc, char **argv)
 {
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-    SDL_Surface *surface;
-    SDL_Event event;
+    initscr();  /* Start curses mode */
+	printw("%s", greet()); /* Print Hello World */
+	refresh(); /* Print it on to the real screen */
+	getch();   /* Wait for user input */
+    endwin();  /* End curses mode */
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0)
-    {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s", SDL_GetError());
-        return 3;
-    } // end if
-
-    if (SDL_CreateWindowAndRenderer(320, 240, SDL_WINDOW_RESIZABLE, &window, &renderer))
-    {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create window and renderer: %s", SDL_GetError());
-        return 3;
-    } // end if
-
-    while (1)
-    {
-        SDL_PollEvent(&event);
-        if (event.type == SDL_QUIT)
-        {
-            break;
-        } // end if
-        SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
-        SDL_RenderClear(renderer);
-        SDL_RenderPresent(renderer);
-    } // end while
-
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-
-    SDL_Quit();
     return 0;
 } // end of func
