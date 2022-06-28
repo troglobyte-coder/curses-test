@@ -1,9 +1,9 @@
-sdl2_dep = dependency('sdl2')
+ncurses_dep = dependency('ncurses')
 
 code_lib = static_library('code_lib',
     'program.c',
     include_directories: '.',
-    dependencies : [sdl2_dep],
+    dependencies : [ncurses_dep],
     install: true)
 
 code_dep = declare_dependency(
