@@ -5,7 +5,7 @@
 //
 #include "program.h"
 #include <stdio.h>
-#include <ncurses>
+#include <ncurses.h>
 
 //
 // Should greet the user into the program
